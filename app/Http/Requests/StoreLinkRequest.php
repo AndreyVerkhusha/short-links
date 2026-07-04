@@ -9,9 +9,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreLinkRequest extends FormRequest
 {
-    /**
-     * @return bool
-     */
     public function authorize(): bool
     {
         return true;
@@ -32,9 +29,6 @@ class StoreLinkRequest extends FormRequest
         ];
     }
 
-    /**
-     * @return StoreLinkDto
-     */
     public function toDto(): StoreLinkDto
     {
         return new StoreLinkDto(

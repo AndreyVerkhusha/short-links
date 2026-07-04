@@ -11,12 +11,8 @@ final class ShortCodeGenerator
 {
     public function __construct(
         private readonly LinkRepository $linkRepository,
-    ) {
-    }
+    ) {}
 
-    /**
-     * @return string
-     */
     public function generate(): string
     {
         do {

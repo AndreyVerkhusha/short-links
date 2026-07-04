@@ -11,9 +11,6 @@ class ViewLink extends ViewRecord
 {
     protected static string $resource = LinkResource::class;
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return 'Статистика переходов';

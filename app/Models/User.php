@@ -50,9 +50,6 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * @return HasMany
-     */
     public function links(): HasMany
     {
         return $this->hasMany(Link::class);

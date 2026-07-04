@@ -13,13 +13,8 @@ class LinkService
     public function __construct(
         private readonly LinkRepository $linkRepository,
         private readonly ShortCodeGenerator $shortCodeGenerator,
-    ) {
-    }
+    ) {}
 
-    /**
-     * @param StoreLinkDto $dto
-     * @return Link
-     */
     public function create(StoreLinkDto $dto): Link
     {
         $shortCode = $this->shortCodeGenerator->generate();
@@ -27,10 +22,6 @@ class LinkService
         return $this->linkRepository->create($dto, $shortCode);
     }
 
-    /**
-     * @param string $shortCode
-     * @return string
-     */
     public function resolve(string $shortCode): string
     {
         $link = $this->linkRepository->findByShortCode($shortCode);

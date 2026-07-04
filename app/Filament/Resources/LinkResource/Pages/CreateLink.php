@@ -16,9 +16,7 @@ class CreateLink extends CreateRecord
     protected static string $resource = LinkResource::class;
 
     /**
-     * @param array<string, mixed> $data
-     *
-     * @return Model
+     * @param  array<string, mixed>  $data
      */
     protected function handleRecordCreation(array $data): Model
     {

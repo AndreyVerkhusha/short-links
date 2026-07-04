@@ -28,17 +28,11 @@ class Link extends Model
         'short_code',
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * @return HasMany
-     */
     public function clicks(): HasMany
     {
         return $this->hasMany(LinkClick::class);

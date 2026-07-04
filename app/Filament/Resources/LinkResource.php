@@ -29,19 +29,12 @@ class LinkResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Ссылки';
 
-    /**
-     * @return Builder
-     */
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
             ->where('user_id', auth()->id());
     }
 
-    /**
-     * @param Form $form
-     * @return Form
-     */
     public static function form(Form $form): Form
     {
         return $form->schema([
@@ -53,24 +46,26 @@ class LinkResource extends Resource
         ]);
     }
 
-    /**
-     * @param Infolist $infolist
-     * @return Infolist
-     */
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist->schema([
             Infolists\Components\TextEntry::make('original_url')
                 ->label('Оригинальная ссылка')
+                ->url(fn (Link $record): string => $record->original_url)
+                ->openUrlInNewTab()
+                ->copyable()
+                ->columnSpanFull(),
+
+            Infolists\Components\TextEntry::make('short_code')
+                ->label('Короткая ссылка')
+                ->state(fn (Link $record): string => url($record->short_code))
+                ->url(fn (Link $record): string => url($record->short_code))
+                ->openUrlInNewTab()
                 ->copyable()
                 ->columnSpanFull(),
         ]);
     }
 
-    /**
-     * @param Table $table
-     * @return Table
-     */
     public static function table(Table $table): Table
     {
         return $table
@@ -79,7 +74,9 @@ class LinkResource extends Resource
                     ->label('Оригинальная ссылка')
                     ->searchable()
                     ->limit(65)
-                    ->tooltip(fn (Link $record): string => wordwrap($record->original_url, 60, PHP_EOL, true)),
+                    ->extraAttributes(fn (Link $record): array => [
+                        'title' => $record->original_url,
+                    ]),
 
                 Tables\Columns\TextColumn::make('short_code')
                     ->label('Короткая ссылка')

@@ -9,6 +9,5 @@ final class StoreLinkDto
     public function __construct(
         public int $userId,
         public string $originalUrl,
-    ) {
-    }
+    ) {}
 }

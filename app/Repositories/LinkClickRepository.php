@@ -9,11 +9,6 @@ use App\Models\LinkClick;
 
 class LinkClickRepository
 {
-    /**
-     * @param Link $link
-     * @param string $ipAddress
-     * @return LinkClick
-     */
     public function create(Link $link, string $ipAddress): LinkClick
     {
         return LinkClick::create([

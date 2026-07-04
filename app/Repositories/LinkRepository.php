@@ -10,11 +10,6 @@ use App\Models\LinkClick;
 
 class LinkRepository
 {
-    /**
-     * @param StoreLinkDto $dto
-     * @param string $shortCode
-     * @return Link
-     */
     public function create(StoreLinkDto $dto, string $shortCode): Link
     {
         return Link::create([
@@ -24,10 +19,6 @@ class LinkRepository
         ]);
     }
 
-    /**
-     * @param Link $link
-     * @return void
-     */
     public function incrementClicks(Link $link): void
     {
         LinkClick::create([
@@ -36,10 +27,6 @@ class LinkRepository
         ]);
     }
 
-    /**
-     * @param string $shortCode
-     * @return Link|null
-     */
     public function findByShortCode(string $shortCode): ?Link
     {
         /** @var Link|null $link */
@@ -50,10 +37,6 @@ class LinkRepository
         return $link;
     }
 
-    /**
-     * @param string $shortCode
-     * @return bool
-     */
     public function existsByShortCode(string $shortCode): bool
     {
         return Link::query()

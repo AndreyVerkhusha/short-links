@@ -26,6 +26,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->brandName('Сервис коротких ссылок')
             ->login()
             ->registration()
             ->homeUrl('/admin/links')

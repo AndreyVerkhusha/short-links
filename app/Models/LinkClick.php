@@ -25,9 +25,6 @@ class LinkClick extends Model
         'ip_address',
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function link(): BelongsTo
     {
         return $this->belongsTo(Link::class);

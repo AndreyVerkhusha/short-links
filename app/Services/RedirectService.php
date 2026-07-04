@@ -14,19 +14,14 @@ class RedirectService
     public function __construct(
         private readonly LinkRepository $linkRepository,
         private readonly LinkClickRepository $linkClickRepository,
-    ) {
-    }
+    ) {}
 
-    /**
-     * @param string $shortCode
-     * @return RedirectResponse
-     */
     public function redirect(string $shortCode): RedirectResponse
     {
         $link = $this->linkRepository->findByShortCode($shortCode);
 
         if ($link === null) {
-            throw new NotFoundHttpException();
+            throw new NotFoundHttpException;
         }
 
         $this->linkClickRepository->create(
